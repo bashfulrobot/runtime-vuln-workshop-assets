@@ -25,7 +25,7 @@ spec:
                   - amd64
       containers:
       - name: api
-        image: placeholder
+        image: ghcr.io/andrewd-sysdig/runtime-vuln-workshop-assets-api:latest
         ports:
         - containerPort: 8000
 ---

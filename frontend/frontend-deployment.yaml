@@ -25,7 +25,7 @@ spec:
                   - amd64
       containers:
       - name: frontend
-        image: placeholder
+        image: ghcr.io/andrewd-sysdig/runtime-vuln-workshop-assets-frontend:latest
         ports:
         - containerPort: 8080
 ---
