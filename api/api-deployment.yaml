@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api
+  name: dk-api
   labels:
-    app: api
+    app: dk-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: dk-api
   template:
     metadata:
       labels:
-        app: api
+        app: dk-api
     spec:
       affinity:
           nodeAffinity:
@@ -24,8 +24,8 @@ spec:
                   values:
                   - amd64
       containers:
-      - name: api
-        image: ghcr.io/andrewd-sysdig/runtime-vuln-workshop-assets-api:latest
+      - name: dk-api
+        image: ghcr.io/bashfulrobot/runtime-vuln-workshop-assets-api:latest
         ports:
         - containerPort: 8000
 ---
@@ -33,13 +33,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: api-end
-  name: api-svc
+    app: dk-api-end
+  name: dk-api-svc
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 8000
   selector:
-    app: api
+    app: dk-api
   type: ClusterIP

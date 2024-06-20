@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: dk-frontend
   labels:
-    app: frontend
+    app: dk-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: dk-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: dk-frontend
     spec:
       affinity:
           nodeAffinity:
@@ -24,8 +24,8 @@ spec:
                   values:
                   - amd64
       containers:
-      - name: frontend
-        image: ghcr.io/andrewd-sysdig/runtime-vuln-workshop-assets-frontend:latest
+      - name: dk-frontend
+        image: ghcr.io/bashfulrobot/runtime-vuln-workshop-assets-dk-frontend:latest
         ports:
         - containerPort: 8080
 ---
@@ -33,13 +33,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: frontend
-  name: frontend-svc
+    app: dk-frontend
+  name: dk-frontend-svc
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 3000
   selector:
-    app: frontend
+    app: dk-frontend
   type: NodePort
